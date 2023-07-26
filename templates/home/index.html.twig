@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snake
+{% endblock %}
+
+{% block body %}
+<main>
+	<div>{{ error ?? '' }}</div>
+	<div class="map" {{ stimulus_controller('game') }} >
+		{% include 'home/_map.html.twig' %}
+	</div>
+
+</main>
+{% endblock %}

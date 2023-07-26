@@ -1,0 +1,33 @@
+<div class="infos">
+	<div class="">
+		<button class="btn" {{ stimulus_action('game', 'startGame') }}>Start</button>
+		<a class="btn btn-sm" href="{{ path('reset') }}">Reset</a>
+	</div>
+	<div class="score">
+		{{ map.score }}
+	</div>
+</div>
+
+<div id="game" data-action="keydown@document->game#move" class="game" data-score="{{ 400 - map.score * 50 }}">
+	{% for i in 0 .. map.size -1  %}
+		{% for j in 0 .. map.size -1  %}
+			<div>
+				{% for snakeBlock in map.snake.blocks %}
+					{% if snakeBlock.x == j and snakeBlock.y == i %}
+						{% if snakeBlock is same as(map.snake.head) %}
+							<div class="snake head {{ map.snake.direction  }}"></div>
+						{% else %}
+							<div class="snake position{{ snakeBlock.position }}"></div>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+				{% if map.fruit.x == j and map.fruit.y == i %}
+					<div class="">
+						{% include 'svg/snake_head.svg' %}
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	{% endfor %}
+
+</div>

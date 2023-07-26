@@ -1,0 +1,132 @@
+:root {
+    --snake: #83a12a;
+    --primary: rgba(170, 136, 87, 0.8);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightgray;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:    rem;
+}
+.game {
+    --size: 50px;
+    display: grid;
+    grid-template-columns: repeat(10, var(--size));
+    grid-template-rows: repeat(10, var(--size));
+    margin: auto;
+    width: fit-content;
+    border: 1px solid var(--primary);
+}
+
+.game>div {
+    border-top: 1px solid var(--primary);
+    border-right: 1px solid var(--primary);
+    box-shadow: 0 0 25px inset rgb(170, 136, 87);
+}
+
+.game .snake {
+    width: var(--size);
+    aspect-ratio: 1;
+    background: var(--snake);
+    border-radius: 8px;
+}
+
+.game .head {
+    filter: brightness(110%);
+    background: url(../images/snake.png);
+    background-size: cover;
+    transform: rotate(var(--head-rotate, -90deg));
+}
+
+.head.T {
+    --head-rotate: -180deg;
+}
+
+.head.L {
+    --head-rotate: 90deg;
+}
+
+.head.R {
+    --head-rotate: -90deg;
+}
+
+.head.B {
+    --head-rotate: 0;
+}
+
+.positionH {
+    transform: scaleY(0.5);
+}
+
+.positionV {
+    transform: scaleX(0.5);
+}
+
+.positionRT {
+    clip-path: polygon(0% 25%, 25% 25%, 25% 0, 75% 0, 75% 75%, 0 75%);
+}
+
+.positionTL {
+    clip-path: polygon(75% 100%, 75% 25%, 0% 25%, 0% 75%, 25% 75%, 25% 100%);
+}
+.positionBR {
+    clip-path: polygon(25% 0%, 25% 75%, 100% 75%, 100% 25%, 75% 25%, 75% 0%);
+}
+
+.positionLB {
+    clip-path: polygon(100% 25%, 25% 25%, 25% 100%, 75% 100%, 75% 75%, 100% 75%);
+}
+
+.fruit {
+    display: block;
+    background-color: red;
+    scale: 0.8;
+    width: 50px;
+    height: 50px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.btn {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 25px inset rgb(170, 136, 87);
+    width: fit-content;
+    font-size: 1.3rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.btn-sm {
+    box-shadow: none;
+    padding: 0.3rem;
+    font-size: 1rem;
+}
+
+a:any-link {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.infos {
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.score {
+    border: 1px solid var(--primary);
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
